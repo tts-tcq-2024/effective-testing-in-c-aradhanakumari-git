@@ -18,7 +18,7 @@ void testPrintColorMap() {
     char buff[1000];
     memset(buff, 0, sizeof(buff));
     setvbuf(stdout, buff, _IOFBF, sizeof(buff));
-    
+    int var = 0;
     int result = printColorMap();
     fflush(stdout);
 
@@ -35,8 +35,8 @@ void testPrintColorMap() {
         "9 | Red | Slate\n"
         "10 | Black | Blue\n"
 
-
-    assert(strcmp(buff, expecOutput) == 0);
+    var = strcmp(buff, expecOutput);
+    assert(var == 0);
     assert(result == 25);
 }
 int main() {
