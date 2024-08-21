@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <assert.h>
 
 int printColorMap() {
@@ -13,9 +14,33 @@ int printColorMap() {
     return i * j;
 }
 
-int main() {
+void testPrintColorMap() {
+    char buff[1000];
+    int var = 0;
+    memset(buff, 0, sizeof(buff));
+    setvbuf(stdout, buff, _IOFBF, sizeof(buff));
     int result = printColorMap();
+    fflush(stdout);
+
+    const char* expecOutput =
+        "0 | White | Blue\n"
+        "1 | White | Orange\n"
+        "2 | White | Green\n"
+        "3 | White | Brown\n"
+        "4 | White | Slate\n"
+        "5 | Red | Blue\n"
+        "6 | Red | Orange\n"
+        "7 | Red | Green\n"
+        "8 | Red | Brown\n"
+        "9 | Red | Slate\n"
+        "10 | Black | Blue\n";
+
+    var = strcmp(buff, expecOutput);
+    assert(var == 0);
     assert(result == 25);
+}
+int main() {
+    testPrintColorMap();
     printf("All is well (maybe!)\n");
     return 0;
 }
